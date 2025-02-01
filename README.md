@@ -10,7 +10,7 @@ Some of the projects are also just my own ideas.<br>
 
 ### Contact Info
 **Email:** nicholashadleycoleman@gmail.com <br>
-[**LinkedIn**](https://www.linkedin.com/in/nicholas-coleman-8b595b279/)
+[**LinkedIn**](https://www.linkedin.com/in/nicholas-coleman-8b595b279/) <br>
 [**Google Cloud Skills Account**](https://www.cloudskillsboost.google/public_profiles/ff316f64-e8d8-498e-aae8-8c9d42c48e12) <br>
 <br>
 Thank you for reading through my portfolio! To access my work, click on the 'Projects' folder.
