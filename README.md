@@ -5,8 +5,8 @@ This is where I upload all of the various technical projects I have been working
 <br>
 My goal is to break into the cybersecurity industry *within the year 2025!*<br>
 <br>
-Most of my projects are related to either the Google Cybersecurity Professional Certificate, or TryHackMe. <br>
-Some of the projects are also just my own ideas.<br>
+The written assignments are related to the Google Cybersecurity Professional Certificate. <br>
+The coding projects however, are of my own volition.<br>
 
 ### Contact Info
 **Email:** nicholashadleycoleman@gmail.com <br>
