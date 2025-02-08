@@ -3,7 +3,7 @@
 
 This is where I upload all of the various technical projects I have been working on. <br>
 <br>
-My goal is to break into the cybersecurity industry *within the year 2025!*<br>
+In addition to those, are a selection of written assignments that showcase my knowledge of the industry.<br>
 <br>
 The written assignments are related to the Google Cybersecurity Professional Certificate. <br>
 The coding projects however, are of my own volition.<br>
