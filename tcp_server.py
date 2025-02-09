@@ -4,14 +4,14 @@ import socket
 # AF_INET = IPv4, SOCK_STREAM = TCP
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Get local machine name and port
+# Gets the value of the IP address of the host/server
 host = socket.gethostname()
-port = 444
+port = 444 
 
 # Bind server socket object the port
 serversocket.bind(host, port)
 
-serversocket.listen(3) # TCP listener, 3 clients can queue up
+serversocket.listen(3) # 3 clients can queue up
 
 while True:
     # Establish connection with client
@@ -19,6 +19,6 @@ while True:
     
     print("Recieved connection from " % str(addr))
     message = 'Hello and thank you for connecting to the server' + "\r\n" # \r\n is the line ending
-    clientsocket.send(message)
+    clientsocket.send(message.encode (ascii))
     
     clientsocket.close
