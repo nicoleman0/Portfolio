@@ -3,11 +3,11 @@ import socket
 clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 host = socket.gethostname()
-port = 444
+port = 444 # Arbitrary port, but it must match the server's port
 
-clientsocket.connect(host, port) # Connect to the server
+clientsocket.connect((host, port)) # Connect to the server
 
-message = clientsocket.recv(1024) # Receive data from the server
+message = clientsocket.recv(1024) # 1024 refers to bytes of data to be received
 
 clientsocket.close()
 

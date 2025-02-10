@@ -1,9 +1,22 @@
 import socket
+import os
+import sys
 
-# Creating a raw socket, using family=AF_INET and type=SOCK_RAW
-# AF_INET is the address family for IPv4, and SOCK_RAW is the socket type for raw packets, IPPROTO_TCP is the protocol number for TCP packets
-serversocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+# Check for root privileges.
+if os.geteuid() != 0:
+    print("This script must be run as root!")
+    sys.exit(1)
 
-# Infinite loop to recieve data from the socket
+# Create a raw socket and bind it to the public interface
+try:
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+except PermissionError as e:
+    print("Error: Raw sockets require root privileges.")
+    sys.exit(1)
+
+# Infinite loop to receive data from the socket
 while True:
-    print(serversocket.recvfrom(65565)) # recieving all the data from the socket, parameter is the buffer size -> 65565 bytes is maximum
+    # Receiving all the data from the socket
+    # The parameter is the buffer size -> 65565 bytes is maximum
+    packet, addr = serversocket.recvfrom(65565)
+    print(f"Packet from {addr}: {packet.hex()}") # print the packet data in hexadecimal format
