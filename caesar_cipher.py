@@ -2,16 +2,17 @@ import string
 
 def caesar_encrypt(message, key):
 
-    shift = key % 26 
-    cipher = str.maketrans(string.ascii_lowercase, string.ascii_lowercase[shift:] + string.ascii_lowercase[:shift]) # Create a translation table
+    shift_amount = key % 26 
+    # Create a translation table that maps each letter to its shifted counterpart
+    cipher = str.maketrans(string.ascii_lowercase, string.ascii_lowercase[shift_amount:] + string.ascii_lowercase[:shift_amount])
 
     encrypted_message = message.lower().translate(cipher) 
     return encrypted_message
 
 def caesar_decrypt(encrypted_message, key):
 
-    shift = 26 - (key % 26) # Calculate the shift for decryption
-    cipher = str.maketrans(string.ascii_lowercase, string.ascii_lowercase[shift:] + string.ascii_lowercase[:shift])
+    shift_amount = 26 - (key % 26) # Calculate the shift for decryption
+    cipher = str.maketrans(string.ascii_lowercase, string.ascii_lowercase[shift_amount:] + string.ascii_lowercase[:shift_amount])
 
     message = encrypted_message.translate(cipher)
     return message
