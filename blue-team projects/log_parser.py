@@ -3,6 +3,13 @@ import pandas as pd
 
 LOG_FILE = "/var/log/syslog" # Set path to your log file
 
+# Check if file exists and print first 10 lines
+with open(LOG_FILE, "r") as f:
+    for i, line in enumerate(f):
+        print(f"Raw log {i+1}: {line.strip()}")
+        if i == 9:  # Print only first 10 lines
+            break
+
 # syslog format: <timestamp> <hostname> <program>: <message>
 log_pattern = re.compile(r'(?P<date>\w+\s+\d+\s+\d+:\d+:\d+)\s+(?P<host>\S+)\s+(?P<process>\S+)\[(?P<pid>\d+)\]:\s(?P<message>.+)')
 
