@@ -1,31 +1,32 @@
 import re
 import pandas as pd
 
-LOG_FILE = "/var/log/syslog" # Set path to your log file
+LOG_FILE = "/var/log/syslog"
 
-# Check if file exists and print first 10 lines
+log_pattern = re.compile(
+    r'(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:[+-]\d{2}:\d{2})?)\s+'
+    r'(?P<host>\S+)\s+'
+    r'(?P<process>[^\[\]:]+)(?:\[(?P<pid>\d+)\])?:\s'
+    r'(?P<message>.+)'
+)
+
+parsed_logs = []
+
 with open(LOG_FILE, "r") as f:
-    for i, line in enumerate(f):
-        print(f"Raw log {i+1}: {line.strip()}")
-        if i == 9:  # Print only first 10 lines
-            break
+    for line in f:
+        match = log_pattern.search(line)
+        if match:
+            parsed_logs.append(match.groupdict())
 
-# syslog format: <timestamp> <hostname> <program>: <message>
-log_pattern = re.compile(r'(?P<date>\w+\s+\d+\s+\d+:\d+:\d+)\s+(?P<host>\S+)\s+(?P<process>\S+)\[(?P<pid>\d+)\]:\s(?P<message>.+)')
+# Create DataFrame
+df = pd.DataFrame(parsed_logs)
 
-# Analyze the hosts that are generating the most logs
-def parse_syslog(file_path):
-    data = []
-    with open(file_path, 'r') as f:
-        for line in f:
-            match = log_pattern.match(line)
-            if match:
-                data.append(match.groupdict())
+# Debugging: Print column names and first rows
+print("DataFrame columns:", df.columns)
+print(df.head())
 
-    return pd.DataFrame(data)
-
-df = parse_syslog(LOG_FILE)
-print (df.head()) # View parsed logs
-
-# Analyze the processes that are generating the most logs
-print(df['process'].value_counts().head(10))
+# Check if 'process' column exists before accessing it
+if 'process' in df.columns:
+    print(df['process'].value_counts().head(10))
+else:
+    print("Column 'process' not found.")
