@@ -1,0 +1,9 @@
+# these are just examples
+
+admin123
+admin_123
+pass
+password
+password123
+password_123
+company_name123
